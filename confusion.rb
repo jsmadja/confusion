@@ -24,23 +24,17 @@ class Confusion
 	end
 
 	def peine_sans_demande
-	  peine = Peine.new(0)
-	  @jugements.each { |jugement| 
-	  	peine += jugement.peine 
+	  @jugements.inject(Peine.new(0)) { |peine_cumul, jugement|
+	    peine_cumul + jugement.peine
 	  }
-	  peine
 	end
 
 	def peine_avec_demande
-	  jugement_avec_peine_maximale(*@jugements).peine
+	  jugement_avec_peine_maximale.peine
 	end
 
-	def jugement_avec_peine_maximale(first, *rest)
-	  jugementAvecPeineMaximale = first
-	  rest.each { |jugement| 
-	  	jugementAvecPeineMaximale = jugement if jugement.peine.duree > jugementAvecPeineMaximale.peine.duree 
-	  }
-	  jugementAvecPeineMaximale
+	def jugement_avec_peine_maximale
+	  @jugements.max_by { |jugement| jugement.peine.duree}
 	end
 
 end
