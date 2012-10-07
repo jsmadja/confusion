@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
-require "jugement.rb"
+require "./jugement"
 require "test/unit" 
-require "fait.rb"
+require "./fait"
 require "date"
 
 

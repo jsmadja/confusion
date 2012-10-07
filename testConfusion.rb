@@ -1,19 +1,19 @@
 require "test/unit" 
 
-require "fait.rb"
-require "confusion.rb"
+require "./fait"
+require "./confusion"
 require "date"
-require "jugement.rb"
+require "./jugement"
 
 class TestConfusion < Test::Unit::TestCase
   
   def test_calcul_sans_demande_de_confusion_de_peine
-  	date_du_jugement = Date.new(2010, 8, 5)
-	  date_notifiee_a_personne = Date.new(2012, 5, 5) 
+  	date_du_jugement = "2010-8-5"
+	  date_notifiee_a_personne = "2012-5-5" 
     faitA = Fait.new(Date.new(2010, 5, 5))
     jugementA = Jugement.new(faitA, date_du_jugement, Jugement::CAS, date_notifiee_a_personne)
 
-    date_du_jugement = Date.new(2012, 5, 6)
+    date_du_jugement = "2012-5-6"
     faitB = Fait.new(Date.new(2011, 1, 8))
     jugementB = Jugement.new(faitB, date_du_jugement)
 
@@ -26,15 +26,15 @@ class TestConfusion < Test::Unit::TestCase
   end
 
   def test_calcul_avec_demande_de_confusion_de_2_peines
-    date_du_jugement = Date.new(2010, 8, 5)
-    date_notifiee_a_personne = Date.new(2012, 5, 5) 
+    date_du_jugement = "2010-8-5"
+    date_notifiee_a_personne = "2012-5-5" 
     jugementA = Jugement.new(
         Fait.new(Date.new(2010, 5, 5)), 
         date_du_jugement, 
         Jugement::CAS, 
         date_notifiee_a_personne)
 
-    date_du_jugement = Date.new(2012, 5, 6)
+    date_du_jugement = "2012-5-6"
     jugementB = Jugement.new(
         Fait.new(Date.new(2011, 1, 8)), 
         date_du_jugement)
@@ -48,11 +48,11 @@ class TestConfusion < Test::Unit::TestCase
   end
 
   def test_calcul_sans_demande_de_confusion_de_peine_confusion_impossible
-    date_du_jugement = Date.new(2010, 8, 5)
-    date_notifiee_a_personne = Date.new(2010, 9, 5) 
+    date_du_jugement = "2010-8-5"
+    date_notifiee_a_personne = "2010-9-5" 
     jugementA = Jugement.new(Fait.new(Date.new(2010, 5, 5)), date_du_jugement, Jugement::CAS, date_notifiee_a_personne)
 
-    date_du_jugement = Date.new(2012, 5, 6)
+    date_du_jugement = "2012-5-6"
     
     jugementB = Jugement.new(Fait.new(Date.new(2011, 1, 8)), date_du_jugement)
 
@@ -65,17 +65,17 @@ class TestConfusion < Test::Unit::TestCase
   end
 
   def test_calcul_avec_demande_de_confusion_de_3_peines
-    date_du_jugement = Date.new(2010, 2, 1)
+    date_du_jugement = "2010-2-1"
     jugementA = Jugement.new(
         Fait.new(Date.new(2010, 1, 1)), 
         date_du_jugement)
 
-    date_du_jugement = Date.new(2010, 3, 1)
+    date_du_jugement = "2010-3-1"
     jugementB = Jugement.new(
         Fait.new(Date.new(2010, 2, 1)), 
         date_du_jugement)
 
-    date_du_jugement = Date.new(2010, 4, 1)
+    date_du_jugement = "2010-4-1"
     jugementC = Jugement.new(
         Fait.new(Date.new(2010, 3, 1)), 
         date_du_jugement)
@@ -90,15 +90,15 @@ class TestConfusion < Test::Unit::TestCase
   end
 
   def test_etude_demande_de_confusion_de_2_peines
-    date_du_jugement = Date.new(2010, 8, 5)
-    date_notifiee_a_personne = Date.new(2012, 5, 5) 
+    date_du_jugement = "2010-8-5"
+    date_notifiee_a_personne = "2012-5-5" 
     jugementA = Jugement.new(
         Fait.new(Date.new(2010, 5, 5), "Vol"), 
         date_du_jugement, 
         Jugement::CAS, 
         date_notifiee_a_personne)
 
-    date_du_jugement = Date.new(2012, 5, 6)
+    date_du_jugement = "2012-5-6"
     jugementB = Jugement.new(
         Fait.new(Date.new(2011, 1, 8), "Braquage"), 
         date_du_jugement)
@@ -111,17 +111,17 @@ class TestConfusion < Test::Unit::TestCase
   end
 
   def test_etude_demande_de_confusion_de_3_peines
-    date_du_jugement = Date.new(2010, 2, 1)
+    date_du_jugement = "2010-2-1"
     jugementA = Jugement.new(
         Fait.new(Date.new(2010, 1, 1), "Braquage"), 
         date_du_jugement)
 
-    date_du_jugement = Date.new(2010, 3, 1)
+    date_du_jugement = "2010-3-1"
     jugementB = Jugement.new(
         Fait.new(Date.new(2010, 2, 1), "VAMA"), 
         date_du_jugement)
 
-    date_du_jugement = Date.new(2010, 4, 1)
+    date_du_jugement = "2010-4-1"
     jugementC = Jugement.new(
         Fait.new(Date.new(2010, 3, 1), "Viol"), 
         date_du_jugement)

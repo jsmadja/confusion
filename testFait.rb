@@ -1,4 +1,4 @@
-require "fait.rb"
+require "./fait"
 require "test/unit" 
 require "date"
 

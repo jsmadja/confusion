@@ -1,5 +1,5 @@
-require "fait.rb"
-require "condamnation.rb"
+require "./fait"
+require "./condamnation"
 require "test/unit" 
 require "date"
 

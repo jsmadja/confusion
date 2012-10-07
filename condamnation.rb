@@ -1,4 +1,4 @@
-require "fait.rb"
+require "./fait"
 require "date"
 
 class Condamnation
