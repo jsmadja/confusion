@@ -1,5 +1,4 @@
 require "fait.rb"
-require "peine.rb"
 
 class Confusion
 
@@ -16,31 +15,36 @@ class Confusion
 	end
 
 	def possible
-		jugementA = @jugements[0]
-		jugementB = @jugements[1]
-
-		days_to_go = jugementA.date_caractere_definitif - jugementB.fait.date_des_faits
-		days_to_go > 0
+		possible = false
+		jugementPrecedent = nil
+		for jugement in @jugements 
+		  if (jugementPrecedent)
+		  	if(jugementPrecedent.condamnation.est_pas_definitive_avec(jugement.condamnation))
+		  		possible = true	
+		  	end
+		  end
+		  jugementPrecedent = jugement
+		end
+		possible
 	end
 
-	def peine_sans_demande
-	  peine = Peine.new(0)
-	  @jugements.each { |jugement| 
-	  	peine += jugement.peine 
-	  }
-	  peine
-	end
-
-	def peine_avec_demande
-	  jugement_avec_peine_maximale(*@jugements).peine
-	end
-
-	def jugement_avec_peine_maximale(first, *rest)
-	  jugementAvecPeineMaximale = first
-	  rest.each { |jugement| 
-	  	jugementAvecPeineMaximale = jugement if jugement.peine.duree > jugementAvecPeineMaximale.peine.duree 
-	  }
-	  jugementAvecPeineMaximale
-	end
+	def etude
+		audit = []
+	  	x = 0               
+		for x in 0..@jugements.count do      
+		  jugement = @jugements[x]
+			y = x + 1               
+			while y < @jugements.count do
+				jugementSuivant = @jugements[y]
+				if (jugement.condamnation.est_definitive_avec(jugementSuivant.condamnation))
+					audit << "#{jugement.condamnation.fait.description} est definitif avec #{jugementSuivant.condamnation.fait.description}"
+				else
+					audit << "#{jugement.condamnation.fait.description} n'est pas definitif avec #{jugementSuivant.condamnation.fait.description}"
+				end
+				y = y + 1
+			end       
+		end  
+		audit
+	end	
 
 end

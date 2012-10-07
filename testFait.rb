@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-
 require "fait.rb"
 require "test/unit" 
 require "date"
