@@ -10,7 +10,6 @@ class Condamnation
 		@date_caractere_definitif = date_caractere_definitif
 	end
 
-
 	def est_definitive_avec condamnation
 		days_to_go = @date_caractere_definitif - condamnation.fait.date_des_faits
 		definitive = days_to_go < 0
