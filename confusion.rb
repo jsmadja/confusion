@@ -1,3 +1,4 @@
+require 'cairo'
 require "./fait"
 
 class Confusion
@@ -45,6 +46,33 @@ class Confusion
 			end       
 		end  
 		audit
+	end	
+
+	def dessiner fichier_destination
+		dates =  @jugements.map { |jugement| 
+			jugement.condamnation.fait.date_des_faits
+		}
+		min_date = dates.min
+		puts min_date
+		
+		dates =  @jugements.map { |jugement| 
+			jugement.date_caractere_definitif
+		}
+		max_date = dates.max
+		puts max_date
+
+		w = max_date - min_date
+		puts w
+		h = 300
+		bg = [1.0,1.0,1.0, 1]
+		surface = Cairo::ImageSurface.new(w,h)
+		cr = Cairo::Context.new(surface)
+
+		@jugements.each do |jugement|
+ 			jugement.dessiner cr, w, h, min_date
+ 		end 
+
+		cr.target.write_to_png(fichier_destination)
 	end	
 
 end

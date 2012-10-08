@@ -132,4 +132,19 @@ class TestConfusion < Test::Unit::TestCase
                   "VAMA n'est pas definitif avec Viol"], confusion.etude
   end
 
+  def test_dessin_des_jugements
+    jugementA = Jugement.new(Fait.new("2011-1-1", "Braquage"), "2012-2-1")
+    jugementB = Jugement.new(Fait.new("2011-8-1", "VAMA"), "2012-12-1")
+    jugementC = Jugement.new(Fait.new("2012-3-1", "Viol"), "2013-12-1")
+    jugementD = Jugement.new(Fait.new("2012-9-1", "Viol avec vol"), "2015-4-1")
+
+    confusion = Confusion.new()
+    confusion + jugementA
+    confusion + jugementB
+    confusion + jugementC
+    confusion + jugementD
+
+    confusion.dessiner("confusion.png")
+  end
+
 end
