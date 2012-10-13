@@ -53,16 +53,13 @@ class Confusion
 			jugement.condamnation.fait.date_des_faits
 		}
 		min_date = dates.min
-		puts min_date
 		
 		dates =  @jugements.map { |jugement| 
 			jugement.date_caractere_definitif
 		}
 		max_date = dates.max
-		puts max_date
-
+		
 		w = max_date - min_date
-		puts w
 		h = 300
 		bg = [1.0,1.0,1.0, 1]
 		surface = Cairo::ImageSurface.new(w,h)

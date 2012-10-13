@@ -1,0 +1,33 @@
+<html>
+  <body>
+  	<h1>Confusion</h1>
+      <form action="/confusion" method="post">
+          <table>
+            <tr>
+              <td>Date des faits</td>
+              <td>Date du jugement</td>
+              <td>Nature du jugement</td>
+            </tr>
+            <% for @i in 0..10 %>
+              <tr>
+                <td>
+                  <input type=text" name="date_des_faits_<%=@i%>" />
+                </td>
+                <td>
+                  <input type=text" name="date_du_jugement_<%=@i%>" />
+                </td>
+                <td>
+                  <select name="nature_du_jugement_<%=@i%>">
+                    <option value="CAS">CAS</option>
+                    <option value="CONTRADICTOIRE">CONTRADICTOIRE</option>
+                  </select>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+          <input type="submit"/>
+      </form>
+      <hr />
+      <img src='<%=@filename%>.png' />
+  </body>
+</html>
